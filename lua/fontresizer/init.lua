@@ -87,12 +87,12 @@ local function FontResizer(cmd)
   end
  end
 end
+vim.api.nvim_create_user_command("FontResizer",FontResizer, {nargs="+"})
 
 local setup = function(user_options)
  if user_options then
   options = vim.tbl_deep_extend("force",options,user_options)
  end
- vim.api.nvim_create_user_command("FontResizer",FontResizer, {nargs="+"})
 end
 
 return {
