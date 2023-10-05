@@ -1,6 +1,6 @@
 # fontresizer.nvim
 
-A plugins for Neovim to resize the guifont.
+A plugin for Neovim to resize the guifont.
 
 ## Installation
 
