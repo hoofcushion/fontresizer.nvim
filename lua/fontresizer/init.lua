@@ -6,12 +6,6 @@ local options = {
  minimum = 2,
 }
 
-local options_default_size=options.default_size
-local options_change_up=options.change_up
-local options_change_down=options.change_down
-local options_maximum=options.maximum
-local options_minimum=options.minimum
-
 local vim_opt=vim.opt
 local function get_size_now()
  return tonumber(string.match(vim_opt.guifont._value,":h(%d+)"))
@@ -22,12 +16,12 @@ local function set_font_size(size)
 end
 
 local function size_limit(size)
- if size>options_maximum then
+ if size>options.maximum then
   print("Size reached the boundary of maximum")
-  return options_maximum
- elseif size<options_minimum then
+  return options.maximum
+ elseif size<options.minimum then
   print("Size reached the boundary of minimum")
-  return options_minimum
+  return options.minimum
  end
  return size
 end
@@ -42,10 +36,10 @@ end
 
 local Actions_Change={
  Up=function()
-  font_size_change(options_change_up)
+  font_size_change(options.change_up)
  end,
  Down=function()
-  font_size_change(options_change_down)
+  font_size_change(options.change_down)
  end,
 }
 local function Change(arg)
@@ -60,7 +54,7 @@ end
 
 local Actions_Set={
  Default=function()
-  font_size_set(options_default_size)
+  font_size_set(options.default_size)
  end
 }
 local function Set(arg)
