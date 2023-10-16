@@ -46,7 +46,7 @@ Use by commands
   -- Change font size by change_up
 :FontResizer Change Down
   -- Change font size by change_down
-:FontResizer Change <number>
+:FontResizer Change <num>
   -- Change font size by <num>
   -- - Positive <num> increases font size
   -- - Negative <num> decreases font size
