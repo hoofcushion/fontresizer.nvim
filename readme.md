@@ -113,6 +113,6 @@ Convenient setup
        -- Ctrl + ScrollWheelDown → Change Down
      vim.api.nvim_set_keymap("n","<C-MiddleMouse>","<cmd>:FontResizer Change Down<CR>",opts)
        -- Ctrl + MiddleMouse → Set Default
- end,
+  end,
 }
 ```
