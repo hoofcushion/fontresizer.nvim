@@ -1,35 +1,40 @@
 # fontresizer.nvim
-
 A plugin for Neovim to resize the guifont.
+
+### Demo
+<iframe width="541" height="223" src="https://www.youtube.com/embed/-Wg_dK03wBk?si=nQsjvrUcO2_1M6pZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## Installation
 
-### With [Lazy](https://github.com/folke/lazy.nvim)
+With [Lazy](https://github.com/folke/lazy.nvim)
 
 ```lua
 {"abcdefg233/fontresizer.nvim"}
 ```
 
-### Settings
+Configuration
 
 ```lua
 {
- "abcdefg233/fontresizer.nvim",
- init=function()
-  require("fontresizer").setup({ --these are default settings
-   default_size = 10,
-     --Affects command :FontResizer Set Default
-   change_up=1,
-     --Affects command :FontResizer Change Up
-   change_down=-1,
-     --Affects command :FontResizer Change Down
-   maximum = 30,
-     --Size will not set higher than <maximum>
-   minimum = 2,
-     --Size will not set lower than <minimum>
-     --Do not set a font size lower than 1
-  })
- end,
+  "abcdefg233/fontresizer.nvim",
+  init=function()
+    require("fontresizer").setup(
+      -- These are the default settings, not quite necessary.
+      {
+      default_size = 10,
+        -- Affects command :FontResizer Set Default
+      change_up=1,
+        -- Affects command :FontResizer Change Up
+      change_down=-1,
+        -- Affects command :FontResizer Change Down
+      maximum = 30,
+        -- Font size will not sets higher than <maximum>
+      minimum = 2,
+        -- Font size will not sets lower than <minimum>
+        -- Please don't set the font size lower than 1, it seems broken.
+      }
+    )
+  end,
 }
 ```
 
@@ -39,25 +44,74 @@ Use by commands
 
 ```lua
 :FontResizer Change Up
-  --Change font size by change_up
+  -- Change font size by change_up
 :FontResizer Change Down
-  --Change font size by change_down
-:FontResizer Change <num>
-  --Change font size by <num>
+  -- Change font size by change_down
+:FontResizer Change <number>
+  -- Change font size by <num>
+  -- - Positive <num> increases font size
+  -- - Negative <num> decreases font size
 :FontResizer Set Default
-  --Set font size to default_size
+  -- Set font size to default_size
 :FontResizer Set <num>
-  --Set font size to <num>
+  -- Set font size to <num>
 ```
-
-##Example
 
 Use by shortcuts
 
 ```lua
-vim.api.nvim_set_keymap("n","<A-Up>","<cmd>:FontResizer Change Up<CR>")
-vim.api.nvim_set_keymap("n","<A-Down>","<cmd>:FontResizer Change Down<CR>")
-vim.api.nvim_set_keymap("n","<A-0>","<cmd>:FontResizer Set Default<CR>")
-vim.api.nvim_set_keymap("n","<C-ScrollWheelUp>","<cmd>:FontResizer Change Up<CR>")
-vim.api.nvim_set_keymap("n","<C-ScrollWheelDown>","<cmd>:FontResizer Change Down<CR>")
+-- Binding keymap
+local opts = {noremap = true,silent = true}
+vim.api.nvim_set_keymap("n","<A-Up>","<cmd>:FontResizer Change Up<CR>",opts)
+  -- Alt + Up → Change Up
+vim.api.nvim_set_keymap("n","<A-Down>","<cmd>:FontResizer Change Down<CR>",opts)
+  -- Alt + Down → Change Down
+vim.api.nvim_set_keymap("n","<A-0>","<cmd>:FontResizer Set Default<CR>",opts)
+  -- Alt + 0 → Set Default
+vim.api.nvim_set_keymap("n","<C-ScrollWheelUp>","<cmd>:FontResizer Change Up<CR>",opts)
+  -- Ctrl + ScrollWheelUp → Change Up
+vim.api.nvim_set_keymap("n","<C-ScrollWheelDown>","<cmd>:FontResizer Change Down<CR>",opts)
+  -- Ctrl + ScrollWheelDown → Change Down
+vim.api.nvim_set_keymap("n","<C-MiddleMouse>","<cmd>:FontResizer Change Down<CR>",opts)
+```
+
+## Example Configuration
+
+Convenient setup
+
+```lua
+{
+  "abcdefg233/fontresizer.nvim",
+  init=function()
+    require("fontresizer").setup(
+      -- These are the default settings, not quite necessary.
+      {
+      default_size = 10,
+        -- Affects command :FontResizer Set Default
+      change_up=1,
+        -- Affects command :FontResizer Change Up
+      change_down=-1,
+        -- Affects command :FontResizer Change Down
+      maximum = 30,
+        -- Font size will not sets higher than <maximum>
+      minimum = 2,
+        -- Font size will not sets lower than <minimum>
+        -- Please don't set the font size lower than 1, it seems broken.
+      }
+    )
+    -- Binding keymap
+     local opts = {noremap = true,silent = true}
+     vim.api.nvim_set_keymap("n","<A-Up>","<cmd>:FontResizer Change Up<CR>",opts)
+       -- Alt + Up → Change Up
+     vim.api.nvim_set_keymap("n","<A-Down>","<cmd>:FontResizer Change Down<CR>",opts)
+       -- Alt + Down → Change Down
+     vim.api.nvim_set_keymap("n","<A-0>","<cmd>:FontResizer Set Default<CR>",opts)
+       -- Alt + 0 → Set Default
+     vim.api.nvim_set_keymap("n","<C-ScrollWheelUp>","<cmd>:FontResizer Change Up<CR>",opts)
+       -- Ctrl + ScrollWheelUp → Change Up
+     vim.api.nvim_set_keymap("n","<C-ScrollWheelDown>","<cmd>:FontResizer Change Down<CR>",opts)
+       -- Ctrl + ScrollWheelDown → Change Down
+     vim.api.nvim_set_keymap("n","<C-MiddleMouse>","<cmd>:FontResizer Change Down<CR>",opts)
+ end,
+}
 ```
