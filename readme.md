@@ -72,6 +72,7 @@ vim.api.nvim_set_keymap("n","<C-ScrollWheelUp>","<cmd>:FontResizer Change Up<CR>
 vim.api.nvim_set_keymap("n","<C-ScrollWheelDown>","<cmd>:FontResizer Change Down<CR>",opts)
   -- Ctrl + ScrollWheelDown → Change Down
 vim.api.nvim_set_keymap("n","<C-MiddleMouse>","<cmd>:FontResizer Change Down<CR>",opts)
+  -- Ctrl + MiddleMouse → Set Default
 ```
 
 ## Example Configuration
@@ -111,6 +112,7 @@ Convenient setup
      vim.api.nvim_set_keymap("n","<C-ScrollWheelDown>","<cmd>:FontResizer Change Down<CR>",opts)
        -- Ctrl + ScrollWheelDown → Change Down
      vim.api.nvim_set_keymap("n","<C-MiddleMouse>","<cmd>:FontResizer Change Down<CR>",opts)
+       -- Ctrl + MiddleMouse → Set Default
  end,
 }
 ```
