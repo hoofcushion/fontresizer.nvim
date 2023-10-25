@@ -2,7 +2,8 @@
 A plugin for Neovim to resize the guifont.
 
 ### Demo
-<iframe width="541" height="223" src="https://www.youtube.com/embed/-Wg_dK03wBk?si=nQsjvrUcO2_1M6pZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+https://github.com/abcdefg233/fontresizer.nvim/assets/32760059/7da96868-019f-49da-ae33-ca40f7155b53
 
 ## Installation
 
