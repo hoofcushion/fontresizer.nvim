@@ -71,25 +71,30 @@ local Actions_FontSize={
  Change=Change,
  Set=Set,
 }
-local function FontResizer(cmd)
- local fargs=cmd.fargs
- local action=Actions_FontSize[fargs[1]]
+local function fnFontResizer(arg1,arg2)
+ if not (arg1 and arg2) then return end
+ local action=Actions_FontSize[arg1]
  if action then
-  local target=fargs[2]
+  local target=arg2
   if target then
    action(target)
   end
  end
 end
-vim.api.nvim_create_user_command("FontResizer",FontResizer, {nargs="+"})
+local function cmdFontResizer(cmd)
+ local fargs=cmd.fargs
+ fnFontResizer(fargs[1],fargs[2])
+end
 
 local setup = function(user_options)
+ vim.api.nvim_create_user_command("FontResizer",cmdFontResizer, {nargs="+"})
  if user_options then
   options = vim.tbl_deep_extend("force",options,user_options)
  end
 end
 
 return {
+ FontResizer=fnFontResizer,
  options=options,
  setup=setup,
 }
