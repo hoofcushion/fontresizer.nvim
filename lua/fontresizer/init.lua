@@ -1,18 +1,16 @@
-local options = {
- default_size = 10,
+local options={
+ default_size=10,
  change_up=1,
  change_down=-1,
- maximum = 30,
- minimum = 2,
+ maximum=30,
+ minimum=2,
 }
-
-local vim_opt=vim.opt
 local function get_size_now()
- return tonumber(string.match(vim_opt.guifont._value,":h(%d+)"))
+ return tonumber(string.match(vim.opt.guifont._value,":h(%d+)"))
 end
 local function set_font_size(size)
  size=tostring(size)
- vim.rpcnotify(0, 'Gui', 'Font', string.gsub(vim_opt.guifont._value,":h%d+",":h"..size), "!")
+ vim.rpcnotify(0,"Gui","Font",string.gsub(vim.opt.guifont._value,":h%d+",":h"..size),"!")
 end
 
 local function size_limit(size)
@@ -55,7 +53,7 @@ end
 local Actions_Set={
  Default=function()
   font_size_set(options.default_size)
- end
+ end,
 }
 local function Set(arg)
  local action=Actions_Set[arg]
@@ -86,13 +84,21 @@ local function cmdFontResizer(cmd)
  fnFontResizer(fargs[1],fargs[2])
 end
 
-local setup = function(user_options)
- vim.api.nvim_create_user_command("FontResizer",cmdFontResizer, {nargs="+"})
- if user_options then
-  options = vim.tbl_deep_extend("force",options,user_options)
+local setup=function(user_options)
+ if vim.g.FontResizer==nil then
+  vim.api.nvim_create_user_command("FontResizer",cmdFontResizer,{nargs="+"})
+  local G_FontResizer={}
+  if type(user_options)=="table" then
+   G_FontResizer.options=vim.tbl_deep_extend("force",options,user_options)
+  end
+  vim.g.FontResizer=G_FontResizer
+  return
+ end
+ local G_FontResizer=vim.g.FontResizer
+ if type(user_options)=="table" then
+  G_FontResizer.options=vim.tbl_deep_extend("force",G_FontResizer.options,user_options)
  end
 end
-
 return {
  FontResizer=fnFontResizer,
  options=options,
