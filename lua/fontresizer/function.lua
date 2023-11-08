@@ -5,8 +5,6 @@ local invalid_fontname={[""]=true,["*"]=true}
 local function font_name_validate(font_name)
  if invalid_fontname[font_name] then
   Error_set.Font_name_Invalid(font_name)
- elseif not string.find(font_name,":h") then
-  font_name=font_name..":h"..tostring(Config.options.default_size)
  end
  return font_name
 end
@@ -39,14 +37,12 @@ local font_size
 local font_size_raw
 ---@return number
 local function get_font_size()
- local current_size=tonumber(string.match(get_font_name(),":h(%d*)"))
+ local current_size=tonumber(string.match(get_font_name(),":h(%d*)")) or Config.options.default_size
  if current_size==font_size then
   return font_size_raw
  end
  return current_size
 end
-font_size=get_font_size()
-font_size_raw=font_size
 local function set_font_size(size)
  size=size_limit(size)
  if not size then return end
