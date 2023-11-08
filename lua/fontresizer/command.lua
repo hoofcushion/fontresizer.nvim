@@ -6,7 +6,7 @@ M.FontResizer=function(cmd)
 end
 M.setup=function()
  if M.loaded then return end
- vim.api.nvim_create_user_command("FontResizer",M.FontResizer,{nargs="+"})
  M.loaded=true
+ vim.api.nvim_create_user_command("FontResizer",M.FontResizer,{nargs="+"})
 end
 return M
