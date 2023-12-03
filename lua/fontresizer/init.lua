@@ -1,5 +1,6 @@
 local M={loaded=false}
 local Config=require("fontresizer.config")
+M.options=Config.options
 function M.setup(user_options)
  Config.setup(user_options)
  local others=Config.options.others
@@ -14,5 +15,4 @@ function M.setup(user_options)
  end
  M.loaded=true
 end
-M.options=Config.options
 return M

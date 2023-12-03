@@ -11,8 +11,9 @@ With [Lazy](https://github.com/folke/lazy.nvim)
 
 ```lua
 {
- "abcdefg233/fontresizer.nvim"
- opts={}
+ "abcdefg233/fontresizer.nvim",
+ cmd={"FontResizer"},
+ opts={},
 }
 ```
 
@@ -21,6 +22,7 @@ Configuration
 ```lua
 {
  "abcdefg233/fontresizer.nvim",
+ cmd={"FontResizer"},
  opts={
    -- These are the default settings, not quite necessary.
   default_size=10,
@@ -35,18 +37,18 @@ Configuration
    -- Font size will not sets lower than <minimum>.
    -- Please don't set the font size lower than 1, it seems broken.
   others={
-  create_cmd=true,
-   -- Create command "FontResizer" after setup.
-   -- If use API, cmd may not necessary.
-  create_var=true,
-   -- Create Lua global variable "_G.FontResizer" after setup.
-  create_api=true,
-   -- Create a Module API after setup.
-   -- require("fontresizr").API,
-   -- If it sets false, you can still use
-   -- require("fontresizr.api").
+   create_cmd=true,
+    -- Create command "FontResizer" after setup.
+    -- If use API, cmd may not necessary.
+   create_var=true,
+    -- Create Lua global variable "_G.FontResizer" after setup.
+   create_api=true,
+    -- Create a Module API after setup.
+    -- require("fontresizr").API,
+    -- If it sets false, you can still use
+    -- require("fontresizr.api").
   },
- }
+ },
 }
 ```
 
@@ -112,22 +114,20 @@ Normal Keys
 
 ```lua
 local keys={
- {
-  modes={"n"}
-  {"<A-Up>",  _G.FontResizer.API.Change_Up,  "FontResizer Change Up"},
-  {"<A-Down>",_G.FontResizer.API.Change_Down,"FontResizer Change Down"},
-  {"<A-0>",   _G.FontResizer.API.Set_Default,"FontResizer Set Default"},
+ [{"n"}]={
+  {"<A-Up>",  _G.RainbowCursor.API.Change_Up,  "RainbowCursor Change Up"},
+  {"<A-Down>",_G.RainbowCursor.API.Change_Down,"RainbowCursor Change Down"},
+  {"<A-0>",   _G.RainbowCursor.API.Set_Default,"RainbowCursor Set Default"},
  },
- {
-  modes={"n","s","x","o","i","c","t"},
-  {"<C-ScrollWheelUp>",  _G.FontResizer.API.Change_Up,  "FontResizer Change Up"},
-  {"<C-ScrollWheelDown>",_G.FontResizer.API.Change_Down,"FontResizer Change Down"},
-  {"<C-MiddleMouse>",    _G.FontResizer.API.Set_Default,"FontResizer Set Default"},
+ [{"n","s","x","o","i","c","t"}]={
+  {"<C-ScrollWheelUp>",  _G.RainbowCursor.API.Change_Up,  "RainbowCursor Change Up"},
+  {"<C-ScrollWheelDown>",_G.RainbowCursor.API.Change_Down,"RainbowCursor Change Down"},
+  {"<C-MiddleMouse>",    _G.RainbowCursor.API.Set_Default,"RainbowCursor Set Default"},
  },
 }
 local default_opts={noremap=true,silent=true}
-for _,key in ipairs(keys) do
- for _,mode in ipairs(keys.modes) do
+for modes,key in ipairs(keys) do
+ for _,mode in ipairs(modes) do
   local opts=default_opts
   opts.desc=key[3]
   vim.keymap.set(mode,key[1],key[2],opts)
