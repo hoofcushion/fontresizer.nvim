@@ -1,4 +1,5 @@
 # fontresizer.nvim
+
 A plugin for Neovim to resize the guifont.
 
 ### Demo
@@ -72,6 +73,7 @@ _G.FontResizer.API
 -- Needs *others.create_api==true.
 -- Needs *others.create_var==true.
 ```
+
 ```lua
 _G.FontResizer.API.Change_Up()
  -- Change font size by change_up
@@ -136,7 +138,6 @@ end
 ```
 
 Lazy keys
-
 
 ```lua
 {
