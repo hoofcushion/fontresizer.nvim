@@ -60,6 +60,7 @@ local function font_size_set(size)
  set_font_size(size)
 end
 local Actions={}
+M.Actions=Actions
 Actions.Change={
  Up=function()
   font_size_change(Config.options.change_up)
@@ -104,5 +105,4 @@ M.FontResizer=function(arg1,arg2)
   action(arg2)
  end
 end
-M.Actions=Actions
 return M

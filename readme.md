@@ -11,7 +11,7 @@ https://github.com/abcdefg233/fontresizer.nvim/assets/32760059/7da96868-019f-49d
 With [Lazy](https://github.com/folke/lazy.nvim)
 
 ```lua
-{
+local spec={
  "abcdefg233/fontresizer.nvim",
  cmd={"FontResizer"},
  opts={},
@@ -24,33 +24,33 @@ With [Lazy](https://github.com/folke/lazy.nvim)
 Configuration
 
 ```lua
-{
+local spec={
  "abcdefg233/fontresizer.nvim",
  cmd={"FontResizer"},
  opts={
-   -- These are the default settings, not quite necessary.
+  -- These are the default settings, not quite necessary.
   default_size=10,
-   -- Affects command :FontResizer Set Default.
+  -- Affects command :FontResizer Set Default.
   change_up=1,
-   -- Affects command :FontResizer Change Up.
+  -- Affects command :FontResizer Change Up.
   change_down=-1,
-   -- Affects command :FontResizer Change Down.
+  -- Affects command :FontResizer Change Down.
   maximum=30,
-   -- Font size will not sets higher than <maximum>.
+  -- Font size will not sets higher than <maximum>.
   minimum=2,
-   -- Font size will not sets lower than <minimum>.
-   -- Please don't set the font size lower than 1, it seems broken.
+  -- Font size will not sets lower than <minimum>.
+  -- Please don't set the font size lower than 1, it seems broken.
   others={
    create_cmd=true,
-    -- Create command "FontResizer" after setup.
-    -- If use API, cmd may not necessary.
+   -- Create command "FontResizer" after setup.
+   -- If use API, cmd may not necessary.
    create_var=true,
-    -- Create Lua global variable "_G.FontResizer" after setup.
+   -- Create Lua global variable "_G.FontResizer" after setup.
    create_api=true,
-    -- Create a Module API after setup.
-    -- require("fontresizr").API,
-    -- If it sets false, you can still use
-    -- require("fontresizr.api").
+   -- Create a Module API after setup.
+   -- require("fontresizr").API,
+   -- If it sets false, you can still use
+   -- require("fontresizr.api").
   },
  },
  dependencies={
@@ -66,54 +66,55 @@ Lua API
 ```lua
 -- You can get the API by these following ways.
 -- If you do not like Lua way, you can disable API
--- by setting options create_var and create_api to false,
+-- by setting *others.create_var and *others.create_api to false,
 -- and use command instead.
 
-require("fontresizr.api")
+local API=require("fontresizr.api")
 -- Works but not elegant.
 
-require("fontresizr").API
+local API=require("fontresizr").API
 -- Needs *others.create_api==true.
 
-_G.FontResizer.API
+local API=_G.FontResizer.API
 -- Needs *others.create_api==true.
 -- Needs *others.create_var==true.
 ```
 
 ```lua
 _G.FontResizer.API.Change_Up()
- -- Change font size by change_up
+-- Change font size by *change_up
 _G.FontResizer.API.Change_Down()
- -- Change font size by change_down
-_G.FontResizer.API.Change(<num>)
- -- Change font size by <num>
- -- - Positive <num> increases font size
- -- - Negative <num> decreases font size
+-- Change font size by *change_down
+_G.FontResizer.API.Change(number)
+-- Change font size by number
+-- - Positive number increases font size
+-- - Negative number decreases font size
 _G.FontResizer.API.Set_Default()
- -- Set font size to default_size
-_G.FontResizer.API.Set(<num>)
- -- Set font size to <num>
+-- Set font size to *default_size
+_G.FontResizer.API.Set(number)
+-- Set font size to number
 ```
 
-Cmd
+Commands
 
 If `*others.create_cmd==true`, you will get a command `FontResizer` after setup.
 
 You can use it in these following terms
 
-```lua
-:FontResizer Change Up
- -- Change font size by change_up
-:FontResizer Change Down
- -- Change font size by change_down
-:FontResizer Change <num>
- -- Change font size by <num>
- -- - Positive <num> increases font size
- -- - Negative <num> decreases font size
-:FontResizer Set Default
- -- Set font size to default_size
-:FontResizer Set <num>
- -- Set font size to <num>
+|Commands|Behaviors|
+|:--|:--|
+|FontResizer Change Up|Change font size by *change_up|
+|FontResizer Change Down|Change font size by *change_down|
+|FontResizer Change `number`|Change font size by `number`, positive `number` will increase, negative `number` will decrease|
+|FontResizer Set Default|Set font size to *default_size|
+|FontResizer Set `number`|Set font size to `number`|
+
+Default Commands
+
+```
+FontResizer Change Up
+FontResizer Change Down
+FontResizer Set Default
 ```
 
 Use by shortcuts
@@ -146,7 +147,7 @@ end
 Lazy keys
 
 ```lua
-{
+local keys={
  {"<A-Up>",             function() _G.FontResizer.API.Change_Up() end,  desc="FontResizer Change Up"},
  {"<A-Down>",           function() _G.FontResizer.API.Change_Down() end,desc="FontResizer Change Down"},
  {"<A-0>",              function() _G.FontResizer.API.Set_Default() end,desc="FontResizer Set Default"},
@@ -161,7 +162,7 @@ Lazy keys
 Convenient setup for lazy.nvim users
 
 ```lua
-{
+local spec={
  "abcdefg233/fontresizer.nvim",
  cmd={"FontResizer"},
  keys={
@@ -175,27 +176,27 @@ Convenient setup for lazy.nvim users
  opts={
   -- These are the default settings, not quite necessary.
   default_size=10,
-   -- Affects command :FontResizer Set Default.
+  -- Affects command :FontResizer Set Default.
   change_up=1,
-   -- Affects command :FontResizer Change Up.
+  -- Affects command :FontResizer Change Up.
   change_down=-1,
-   -- Affects command :FontResizer Change Down.
+  -- Affects command :FontResizer Change Down.
   maximum=30,
-   -- Font size will not sets higher than <maximum>.
+  -- Font size will not sets higher than <maximum>.
   minimum=2,
-   -- Font size will not sets lower than <minimum>.
-   -- Please don't set the font size lower than 1, it seems broken.
+  -- Font size will not sets lower than <minimum>.
+  -- Please don't set the font size lower than 1, it seems broken.
   others={
    create_cmd=true,
-    -- Create command "FontResizer" after setup.
-    -- If use API, cmd may not necessary.
+   -- Create command "FontResizer" after setup.
+   -- If use API, cmd may not necessary.
    create_var=true,
-    -- Create Lua global variable "_G.FontResizer" after setup.
+   -- Create Lua global variable "_G.FontResizer" after setup.
    create_api=true,
-    -- Create a Module API after setup.
-    -- require("fontresizr").API,
-    -- If it sets false, you can still use
-    -- require("fontresizr.api").
+   -- Create a Module API after setup.
+   -- require("fontresizr").API,
+   -- If it sets false, you can still use
+   -- require("fontresizr.api").
   },
  },
  dependencies={
@@ -222,29 +223,29 @@ M.keys={
 }
 -- Setup
 M.opts={
-  -- These are the default settings, not quite necessary.
+ -- These are the default settings, not quite necessary.
  default_size=10,
-  -- Affects command :FontResizer Set Default.
+ -- Affects command :FontResizer Set Default.
  change_up=1,
-  -- Affects command :FontResizer Change Up.
+ -- Affects command :FontResizer Change Up.
  change_down=-1,
-  -- Affects command :FontResizer Change Down.
+ -- Affects command :FontResizer Change Down.
  maximum=30,
-  -- Font size will not sets higher than <maximum>.
+ -- Font size will not sets higher than <maximum>.
  minimum=2,
-  -- Font size will not sets lower than <minimum>.
-  -- Please don't set the font size lower than 1, it seems broken.
+ -- Font size will not sets lower than <minimum>.
+ -- Please don't set the font size lower than 1, it seems broken.
  others={
   create_cmd=true,
-   -- Create command "FontResizer" after setup.
-   -- If use API, cmd may not necessary.
+  -- Create command "FontResizer" after setup.
+  -- If use API, cmd may not necessary.
   create_var=true,
-   -- Create Lua global variable "_G.FontResizer" after setup.
+  -- Create Lua global variable "_G.FontResizer" after setup.
   create_api=true,
-   -- Create a Module API after setup.
-   -- require("fontresizr").API,
-   -- If it sets false, you can still use
-   -- require("fontresizr.api").
+  -- Create a Module API after setup.
+  -- require("fontresizr").API,
+  -- If it sets false, you can still use
+  -- require("fontresizr.api").
  },
 }
 M.dependencies={
