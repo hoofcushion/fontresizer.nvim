@@ -124,14 +124,14 @@ Normal Keys
 ```lua
 local keys={
  [{"n"}]={
-  {"<A-Up>",  _G.RainbowCursor.API.Change_Up,  "RainbowCursor Change Up"},
-  {"<A-Down>",_G.RainbowCursor.API.Change_Down,"RainbowCursor Change Down"},
-  {"<A-0>",   _G.RainbowCursor.API.Set_Default,"RainbowCursor Set Default"},
+  {"<A-Up>",  function() _G.RainbowCursor.API.Change_Up() end,  "RainbowCursor Change Up"},
+  {"<A-Down>",function() _G.RainbowCursor.API.Change_Down() end,"RainbowCursor Change Down"},
+  {"<A-0>",   function() _G.RainbowCursor.API.Set_Default() end,"RainbowCursor Set Default"},
  },
  [{"n","s","x","o","i","c","t"}]={
-  {"<C-ScrollWheelUp>",  _G.RainbowCursor.API.Change_Up,  "RainbowCursor Change Up"},
-  {"<C-ScrollWheelDown>",_G.RainbowCursor.API.Change_Down,"RainbowCursor Change Down"},
-  {"<C-MiddleMouse>",    _G.RainbowCursor.API.Set_Default,"RainbowCursor Set Default"},
+  {"<C-ScrollWheelUp>",  function() _G.RainbowCursor.API.Change_Up() end,  "RainbowCursor Change Up"},
+  {"<C-ScrollWheelDown>",function() _G.RainbowCursor.API.Change_Down() end,"RainbowCursor Change Down"},
+  {"<C-MiddleMouse>",    function() _G.RainbowCursor.API.Set_Default() end,"RainbowCursor Set Default"},
  },
 }
 local default_opts={noremap=true,silent=true}
