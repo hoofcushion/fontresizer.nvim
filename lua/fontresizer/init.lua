@@ -1,19 +1,17 @@
-local Config=require("fontresizer.config")
-local Command=require("rainbowcursor.command")
 local M={}
-M.options=Config.options
 function M.setup(user_options)
+ local Config=require("fontresizer.config")
+ local Command=require("fontresizer.command")
  Config.setup(user_options)
  Command.setup()
- local opts=Config.options
- if opts.others.create_var then
-  _G.RainbowCursor=M
- else
-  _G.RainbowCursor=nil
+ if Config.options.others.create_var==true then
+  _G.FontResizer=M
+ elseif _G.FontResizer~=nil then
+  _G.FontResizer=nil
  end
- if opts.others.create_api then
+ if Config.options.others.create_api==true then
   M.API=require("fontresizer.api")
- else
+ elseif M.API~=nil then
   M.API=nil
  end
 end
