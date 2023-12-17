@@ -9,8 +9,10 @@ M.options={
  change_down=-1,
  -- Affects command :FontResizer Change Down.
  maximum=30,
+ -- Affects command :FontResizer Set Maximum.
  -- Font size will not sets higher than <maximum>.
  minimum=2,
+ -- Affects command :FontResizer Set Minimum.
  -- Font size will not sets lower than <minimum>.
  -- Please don't set the font size lower than 1, it seems broken.
  others={
@@ -34,7 +36,7 @@ local function integer(arg)
 end
 M.setup=function(user_options)
  local opts=vim.tbl_deep_extend("force",M.options,user_options or {})
- HCUtil.validate_tab(opts,{
+ HCUtil.Validate.tab(opts,{
   default_size={function(arg) return integer(arg) and arg>0 end,"integer arg, 0<arg"},
   change_up   ="number",
   change_down ="number",

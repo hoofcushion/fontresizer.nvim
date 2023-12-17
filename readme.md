@@ -2,9 +2,13 @@
 
 A plugin for Neovim to resize the guifont.
 
-### Demo
+## Demo
 
 https://github.com/abcdefg233/fontresizer.nvim/assets/32760059/7da96868-019f-49da-ae33-ca40f7155b53
+
+## Important
+
+This plugin if only for Neovim gui client like Neovim-qt
 
 ## Installation
 
@@ -21,37 +25,38 @@ local spec={
 }
 ```
 
-Configuration
+## Configuration
 
 ```lua
 local spec={
  "abcdefg233/fontresizer.nvim",
  cmd={"FontResizer"},
  opts={
-  -- These are the default settings, not quite necessary.
-  default_size=10,
-  -- Affects command :FontResizer Set Default.
-  change_up=1,
-  -- Affects command :FontResizer Change Up.
-  change_down=-1,
-  -- Affects command :FontResizer Change Down.
-  maximum=30,
-  -- Font size will not sets higher than <maximum>.
-  minimum=2,
-  -- Font size will not sets lower than <minimum>.
-  -- Please don't set the font size lower than 1, it seems broken.
-  others={
-   create_cmd=true,
-   -- Create command "FontResizer" after setup.
-   -- If use API, cmd may not necessary.
-   create_var=true,
-   -- Create Lua global variable "_G.FontResizer" after setup.
-   create_api=true,
-   -- Create a Module API after setup.
-   -- require("fontresizr").API,
-   -- If it sets false, you can still use
-   -- require("fontresizr.api").
-  },
+ -- These are the default settings, not quite necessary.
+ default_size=10,
+ -- Affects command :FontResizer Set Default.
+ change_up=1,
+ -- Affects command :FontResizer Change Up.
+ change_down=-1,
+ -- Affects command :FontResizer Change Down.
+ maximum=30,
+ -- Affects command :FontResizer Set Maximum.
+ -- Font size will not sets higher than <maximum>.
+ minimum=2,
+ -- Affects command :FontResizer Set Minimum.
+ -- Font size will not sets lower than <minimum>.
+ -- Please don't set the font size lower than 1, it seems broken.
+ others={
+  create_cmd=true,
+  -- Create command "FontResizer" after setup.
+  -- If use API, cmd may not necessary.
+  create_var=true,
+  -- Create Lua global variable "_G.FontResizer" after setup.
+  create_api=true,
+  -- Create a Module API after setup.
+  -- require("fontresizr").API,
+  -- If it sets false, you can still use
+  -- require("fontresizr.api").
  },
  dependencies={
   "abcdefg233/hcutil.nvim"
@@ -101,13 +106,13 @@ If `*others.create_cmd==true`, you will get a command `FontResizer` after setup.
 
 You can use it in these following terms
 
-|Commands|Behaviors|
-|:--|:--|
-|FontResizer Change Up|Change font size by *change_up|
-|FontResizer Change Down|Change font size by *change_down|
-|FontResizer Change `number`|Change font size by `number`, positive `number` will increase, negative `number` will decrease|
-|FontResizer Set Default|Set font size to *default_size|
-|FontResizer Set `number`|Set font size to `number`|
+| Commands                    | Behaviors                                                                                      |
+| :-------------------------- | :--------------------------------------------------------------------------------------------- |
+| FontResizer Change Up       | Change font size by \*change\_up                                                                |
+| FontResizer Change Down     | Change font size by \*change\_down                                                              |
+| FontResizer Change `number` | Change font size by `number`, positive `number` will increase, negative `number` will decrease |
+| FontResizer Set Default     | Set font size to \*default\_size                                                                |
+| FontResizer Set `number`    | Set font size to `number`                                                                      |
 
 Default Commands
 
@@ -117,7 +122,7 @@ FontResizer Change Down
 FontResizer Set Default
 ```
 
-Use by shortcuts
+### Use by shortcuts
 
 Normal Keys
 
@@ -135,12 +140,10 @@ local keys={
  },
 }
 local default_opts={noremap=true,silent=true}
-for modes,key in ipairs(keys) do
- for _,mode in ipairs(modes) do
-  local opts=default_opts
-  opts.desc=key[3]
-  vim.keymap.set(mode,key[1],key[2],opts)
- end
+for modes,key in pairs(keys) do
+ local opts=default_opts
+ opts.desc=key[3]
+ vim.keymap.set(modes,key[1],key[2],opts)
 end
 ```
 
@@ -174,29 +177,15 @@ local spec={
   {"<C-MiddleMouse>",    function() _G.FontResizer.API.Set_Default() end,mode={"n","s","x","o","i","c","t"},desc="FontResizer Set Default"},
  },
  opts={
-  -- These are the default settings, not quite necessary.
   default_size=10,
-  -- Affects command :FontResizer Set Default.
   change_up=1,
-  -- Affects command :FontResizer Change Up.
   change_down=-1,
-  -- Affects command :FontResizer Change Down.
   maximum=30,
-  -- Font size will not sets higher than <maximum>.
   minimum=2,
-  -- Font size will not sets lower than <minimum>.
-  -- Please don't set the font size lower than 1, it seems broken.
   others={
    create_cmd=true,
-   -- Create command "FontResizer" after setup.
-   -- If use API, cmd may not necessary.
    create_var=true,
-   -- Create Lua global variable "_G.FontResizer" after setup.
    create_api=true,
-   -- Create a Module API after setup.
-   -- require("fontresizr").API,
-   -- If it sets false, you can still use
-   -- require("fontresizr.api").
   },
  },
  dependencies={
@@ -223,29 +212,15 @@ M.keys={
 }
 -- Setup
 M.opts={
- -- These are the default settings, not quite necessary.
  default_size=10,
- -- Affects command :FontResizer Set Default.
  change_up=1,
- -- Affects command :FontResizer Change Up.
  change_down=-1,
- -- Affects command :FontResizer Change Down.
  maximum=30,
- -- Font size will not sets higher than <maximum>.
  minimum=2,
- -- Font size will not sets lower than <minimum>.
- -- Please don't set the font size lower than 1, it seems broken.
  others={
   create_cmd=true,
-  -- Create command "FontResizer" after setup.
-  -- If use API, cmd may not necessary.
   create_var=true,
-  -- Create Lua global variable "_G.FontResizer" after setup.
   create_api=true,
-  -- Create a Module API after setup.
-  -- require("fontresizr").API,
-  -- If it sets false, you can still use
-  -- require("fontresizr.api").
  },
 }
 M.dependencies={
@@ -253,3 +228,4 @@ M.dependencies={
 }
 return M
 ```
+

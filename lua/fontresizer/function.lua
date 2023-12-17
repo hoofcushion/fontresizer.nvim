@@ -73,6 +73,12 @@ Actions.Set={
  Default=function()
   font_size_set(Config.options.default_size)
  end,
+ Maximum=function()
+  font_size_set(Config.options.maximum)
+ end,
+ Minimum=function()
+  font_size_set(Config.options.minimum)
+ end,
 }
 Actions.FontResizer={
  Change=function(arg)
