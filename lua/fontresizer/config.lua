@@ -1,31 +1,15 @@
 local HCUtil=require("hcutil")
 local M={}
 M.options={
- -- These are the default settings, not quite necessary.
  default_size=10,
- -- Affects command :FontResizer Set Default.
  change_up=1,
- -- Affects command :FontResizer Change Up.
  change_down=-1,
- -- Affects command :FontResizer Change Down.
  maximum=30,
- -- Affects command :FontResizer Set Maximum.
- -- Font size will not sets higher than <maximum>.
  minimum=2,
- -- Affects command :FontResizer Set Minimum.
- -- Font size will not sets lower than <minimum>.
- -- Please don't set the font size lower than 1, it seems broken.
  others={
   create_cmd=true,
-  -- Create command "FontResizer" after setup.
-  -- If use API, cmd may not necessary.
   create_var=true,
-  -- Create Lua global variable "_G.FontResizer" after setup.
   create_api=true,
-  -- Create a Module API after setup.
-  -- require("fontresizr").API,
-  -- If it sets false, you can still use
-  -- require("fontresizr.api").
  },
 }
 local function number(arg)
