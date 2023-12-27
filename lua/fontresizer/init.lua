@@ -14,5 +14,9 @@ function M.setup(user_options)
  elseif M.API~=nil then
   M.API=nil
  end
+ if Config.options.default_font~=nil then
+  local Function=require("fontresizer.function")
+  Function.set_font(Config.options.default_font)
+ end
 end
 return M

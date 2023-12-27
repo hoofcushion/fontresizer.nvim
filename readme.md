@@ -35,6 +35,8 @@ local spec={
  -- These are the default settings, not quite necessary.
  default_size=10,
  -- Affects command :FontResizer Set Default.
+ default_font=nil, -- nil or string
+ -- Set font after plugin setup.
  change_up=1,
  -- Affects command :FontResizer Change Up.
  change_down=-1,

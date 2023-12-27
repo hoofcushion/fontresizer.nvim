@@ -2,6 +2,7 @@ local HCUtil=require("hcutil")
 local M={}
 M.options={
  default_size=10,
+ default_font="",
  change_up=1,
  change_down=-1,
  maximum=30,
@@ -22,6 +23,7 @@ M.setup=function(user_options)
  local opts=vim.tbl_deep_extend("force",M.options,user_options or {})
  HCUtil.Validate.tab(opts,{
   default_size={function(arg) return integer(arg) and arg>0 end,"integer arg, 0<arg"},
+  default_font={{"string","nil"}},
   change_up   ="number",
   change_down ="number",
   maximum     ={function(arg) return number(arg) and arg>opts.minimum end,"integer arg, arg>minimum"},

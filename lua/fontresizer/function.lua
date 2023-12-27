@@ -43,6 +43,21 @@ local function get_font_size()
  end
  return current_size
 end
+local function _set_font(_font_name)
+ return pcall(function() vim.o.guifont=_font_name end)
+end
+local function set_font(font_name)
+ --- neovide
+ local s=_set_font(font_name)
+ --- neovim-qt
+ if not s then
+  _set_font=function(_font_name)
+   return pcall(vim.rpcnotify,0,"Gui","Font",_font_name,"!")
+  end
+  _set_font(font_name)
+ end
+end
+M.set_font=set_font
 local function set_font_size(size)
  size=size_limit(size)
  if not size then return end
@@ -50,8 +65,12 @@ local function set_font_size(size)
  size=ceil5floor(size)
  font_size=size
  local font_name=get_font_name()
- font_name=string.gsub(font_name,":h%d*",":h"..size)
- vim.rpcnotify(0,"Gui","Font",font_name,"!")
+ if string.find(font_name,":h%d*") then
+  font_name=string.gsub(font_name,":h%d*",":h"..tostring(size))
+ else
+  font_name=font_name..":h"..tostring(size)
+ end
+ set_font(font_name)
 end
 local function font_size_change(size)
  set_font_size(size+get_font_size())
