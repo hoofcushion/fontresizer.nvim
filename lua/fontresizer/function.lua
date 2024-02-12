@@ -1,10 +1,9 @@
 local Config=require("fontresizer.config")
-local Error_set=require("fontresizer.error_set")
 local M={}
 local invalid_fontname={[""]=true,["*"]=true}
 local function font_name_validate(font_name)
  if invalid_fontname[font_name] then
-  Error_set.Font_name_Invalid(font_name)
+  error("The font name \""..fontname.."\" is invalid.\nPlease specify a guifont first `:set guifont=<fontname>:h<size>`.\n or Try use Neovim-qt")
  end
  return font_name
 end
@@ -12,8 +11,8 @@ local function get_font_name()
  return font_name_validate(vim.o.guifont)
 end
 local function size_limit(size)
- local minimum=Config.options.minimum
- local maximum=Config.options.maximum
+ local minimum=Config.options.fontresizer.minimum
+ local maximum=Config.options.fontresizer.maximum
  if size>maximum then
   print("Size: "..size.." reached the boundary of maximum: "..maximum)
   return
@@ -37,7 +36,7 @@ local font_size
 local font_size_raw
 ---@return number
 local function get_font_size()
- local current_size=tonumber(string.match(get_font_name(),":h(%d*)")) or Config.options.default_size
+ local current_size=tonumber(string.match(get_font_name(),":h(%d*)")) or Config.options.fontresizer.default_size
  if current_size==font_size then
   return font_size_raw
  end
@@ -82,21 +81,21 @@ local Actions={}
 M.Actions=Actions
 Actions.Change={
  Up=function()
-  font_size_change(Config.options.change_up)
+  font_size_change(Config.options.fontresizer.change_up)
  end,
  Down=function()
-  font_size_change(Config.options.change_down)
+  font_size_change(Config.options.fontresizer.change_down)
  end,
 }
 Actions.Set={
  Default=function()
-  font_size_set(Config.options.default_size)
+  font_size_set(Config.options.fontresizer.default_size)
  end,
  Maximum=function()
-  font_size_set(Config.options.maximum)
+  font_size_set(Config.options.fontresizer.maximum)
  end,
  Minimum=function()
-  font_size_set(Config.options.minimum)
+  font_size_set(Config.options.fontresizer.minimum)
  end,
 }
 Actions.FontResizer={
