@@ -4,7 +4,7 @@ A plugin for Neovim to resize the guifont.
 
 ## Demo
 
-https://github.com/abcdefg233/fontresizer.nvim/assets/32760059/7da96868-019f-49da-ae33-ca40f7155b53
+https://github.com/hoofcushion/fontresizer.nvim/assets/32760059/7da96868-019f-49da-ae33-ca40f7155b53
 
 ## Important
 
@@ -16,11 +16,11 @@ With [Lazy](https://github.com/folke/lazy.nvim)
 
 ```lua
 local spec = {
- "abcdefg233/fontresizer.nvim",
+ "hoofcushion/fontresizer.nvim",
  cmd = { "FontResizer" },
  opts = {},
  dependencies = {
-  "abcdefg233/hcutil.nvim",
+  "hoofcushion/hcutil.nvim",
  },
 }
 ```
@@ -29,7 +29,7 @@ local spec = {
 
 ```lua
 local spec = {
- "abcdefg233/fontresizer.nvim",
+ "hoofcushion/fontresizer.nvim",
  cmd = { "FontResizer" },
  opts = {
   fontresizer = {
@@ -63,7 +63,7 @@ local spec = {
    -- require("fontresizr.api").
   },
   dependencies = {
-   "abcdefg233/hcutil.nvim",
+   "hoofcushion/hcutil.nvim",
   },
  },
 }
@@ -246,7 +246,7 @@ Convenient setup for lazy.nvim users
 
 ```lua
 local spec = {
- "abcdefg233/fontresizer.nvim",
+ "hoofcushion/fontresizer.nvim",
  cmd = { "FontResizer" },
  -- keys = {
  --  Use the lazy keys above, if you want.
@@ -264,7 +264,7 @@ local spec = {
   },
  },
  dependencies = {
-  "abcdefg233/hcutil.nvim",
+  "hoofcushion/hcutil.nvim",
  },
 }
 ```
@@ -273,7 +273,7 @@ Modularize
 
 ```lua
 local M = {}
-M[1] = "abcdefg233/fontresizer.nvim"
+M[1] = "hoofcushion/fontresizer.nvim"
 M.cmd = { "FontResizer" }
 -- M.keys = {
 --  Use the lazy keys above, if you want.
@@ -291,7 +291,7 @@ M.opts = {
  },
 }
 M.dependencies = {
- "abcdefg233/hcutil.nvim",
+ "hoofcushion/hcutil.nvim",
 }
 return M
 ```
