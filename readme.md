@@ -1,3 +1,5 @@
+# This plugin is a exercise and has been abandoned
+
 # fontresizer.nvim
 
 A plugin for Neovim to resize the guifont.
